@@ -400,7 +400,7 @@ public final class MoreExecutors {
    *
    * <p>{@linkplain Executor#execute executed} tasks have a happens-before order as defined in the
    * Java Language Specification. Tasks execute with the same happens-before order that the function
-   * calls to {@link Executor#execute `execute()`} that submitted those tasks had.
+   * calls to {@link Executor#execute execute()} that submitted those tasks had.
    *
    * <p>The executor uses {@code delegate} in order to {@link Executor#execute execute} each task in
    * turn, and does not create any threads of its own.
@@ -680,6 +680,7 @@ public final class MoreExecutors {
   @SuppressWarnings({
     "GoodTime", // should accept a java.time.Duration
     "CatchingUnchecked", // sneaky checked exception
+    "Interruption", // We copy AbstractExecutorService.invokeAny. Maybe we shouldn't: b/227335009.
   })
   @J2ktIncompatible
   @GwtIncompatible
